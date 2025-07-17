@@ -1,0 +1,81 @@
+<!-- <link rel="stylesheet" href="css/article.css">
+
+<div class="article-container">
+  <h1>Welcome Page</h1>
+
+</div> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Live TV Player</title>
+  <link rel="stylesheet" href="css/article.css" />
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <style>
+    .channel-buttons {
+      margin: 20px 0;
+    }
+    .channel-buttons button {
+      margin-right: 10px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+    .channel-buttons button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="article-container">
+    <h1>📺 Live TV Channels</h1>
+
+    <!-- Channel Selection Buttons -->
+    <div class="channel-buttons">
+      <button onclick="playChannel('https://dzkyvlfyge.erbvr.com/PeaceTvBangla/index.m3u8')">Peace TV Bangla</button>
+      <button onclick="playChannel('https://deshitv.deshitv24.net/live/myStream/playlist.m3u8')">Deshi Tv</button>
+      <button onclick="playChannel('http://m.live.net.sa:1935/live/quran/playlist.m3u8')">quran Tv</button>
+      <button onclick="playChannel('https://cloudfrontnet.vercel.app/tplay/playout/209611/master.m3u')">Ekushe Tv</button>
+      <button onclick="playChannel('https://cors-proxy.io/?https://cloudfrontnet.vercel.app/tplay/playout/209611/master.m3u');
+">Ekushe Tv</button>
+      
+    </div>
+
+    <!-- Video Player -->
+    <video id="liveTv" width="900px" height="400px" controls autoplay></video>
+  </div>
+
+  <script>
+    const video = document.getElementById('liveTv');
+    let hls;
+
+    function playChannel(videoSrc) {
+      if (Hls.isSupported()) {
+        if (hls) {
+          hls.destroy(); // পূর্বের stream বন্ধ করো
+        }
+        hls = new Hls();
+        hls.loadSource(videoSrc);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, function () {
+          video.play();
+        });
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = videoSrc;
+        video.addEventListener('loadedmetadata', function () {
+          video.play();
+        });
+      } else {
+        alert("Your browser does not support HLS playback.");
+      }
+    }
+
+    // Default channel
+    playChannel("https://dzkyvlfyge.erbvr.com/PeaceTvBangla/index.m3u8");
+  </script>
+</body>
+</html>
