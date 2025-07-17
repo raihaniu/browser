@@ -1,10 +1,3 @@
-<!-- <link rel="stylesheet" href="css/article.css">
-
-<div class="article-container">
-  <h1>Welcome Page</h1>
-
-</div> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,39 +5,68 @@
   <title>Live TV Player</title>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <style>
-    .channel-buttons {
-      margin: 20px 0;
+    body {
+      background: #121212;
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
     }
+
+    .channel-buttons {
+      margin: 20px auto;
+      max-width: 900px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
     .channel-buttons button {
-      margin-right: 10px;
       padding: 10px 15px;
       border: none;
       border-radius: 6px;
       background-color: #007bff;
       color: white;
       cursor: pointer;
+      flex: 1 1 200px;
     }
+
     .channel-buttons button:hover {
       background-color: #0056b3;
+    }
+
+    video {
+      width: 90%;
+      max-width: 900px;
+      height: 400px;
+      margin-top: 20px;
+      border-radius: 10px;
+      border: 2px solid #00aaff;
     }
   </style>
 </head>
 <body>
-  <div class="article-container">
-    <h1>📺 Live TV Channels</h1>
+  <h1>📺 Bangladeshi Live TV</h1>
 
-    <!-- Channel Selection Buttons -->
-    <div class="channel-buttons">
-      <button onclick="playChannel('https://dzkyvlfyge.erbvr.com/PeaceTvBangla/index.m3u8')">Peace TV Bangla</button>
-      <button onclick="playChannel('https://deshitv.deshitv24.net/live/myStream/playlist.m3u8')">Deshi Tv</button>
-      <button onclick="playChannel('http://m.live.net.sa:1935/live/quran/playlist.m3u8')">quran Tv</button>
-      <button onclick="playChannel('https://cloudfrontnet.vercel.app/tplay/playout/209611/master.m3u')">GopalVar</button>
-      
-    </div>
-
-    <!-- Video Player -->
-    <video id="liveTv" width="900px" height="400px" controls autoplay></video>
+  <div class="channel-buttons">
+    <button onclick="playChannel('https://dzkyvlfyge.erbvr.com/PeaceTvBangla/index.m3u8')">Peace TV Bangla</button>
+    <button onclick="playChannel('https://deshitv.deshitv24.net/live/myStream/playlist.m3u8')">Deshi Tv</button>
+    <button onclick="playChannel('http://m.live.net.sa:1935/live/quran/playlist.m3u8')">Quran Tv</button>
+    <button onclick="playChannel('https://cloudfrontnet.vercel.app/tplay/playout/209611/master.m3u8')">Gopal Bhar</button>
+    <button onclick="playChannel('https://tvsen6.aynaott.com/channel24/index.m3u8')">Channel 24</button>
+    <button onclick="playChannel('https://tvsen6.aynaott.com/ekattorbdtv/index.m3u8')">Ekattor TV</button>
+    <button onclick="playChannel('https://owrcovcrpy.gpcdn.net/bpk-tv/1705/output/1705-audio_113352_eng=113200-video=1692000.m3u8')">Ekattor (Alt)</button>
+    <button onclick="playChannel('https://tvsen6.aynaott.com/jamunatv/index.m3u8')">Jamuna TV</button>
+    <button onclick="playChannel('https://byphdgllyk.gpcdn.net/hls/deeptotv/0_1/index.m3u8')">Deepto TV</button>
+    <button onclick="playChannel('https://mtv.sunplex.live/MAASRANGA-TV/tracks-v1a1/mono.m3u8')">Maasranga TV</button>
+    <button onclick="playChannel('https://byphdgllyk.gpcdn.net/hls/DeeptoTV/index.m3u8?v=1')">Deptto TV (Alt)</button>
+    <button onclick="playChannel('https://cloudfrontnet.vercel.app/tplay/playout/209622/master.m3u8')">Motu Patlu</button>
+    <button onclick="playChannel('https://cloudfrontnet.vercel.app/tplay/playout/209901/master.m3u8')">Shinchan</button>
+    <button onclick="playChannel('https://cloudfrontnet.vercel.app/tplay/playout/209902/master.m3u8')">Doraemon</button>
+    <button onclick="playChannel('https://cloudfrontnet.vercel.app/tplay/playout/209611/master.m3u8')">Sony Aath</button>
   </div>
+
+  <video id="liveTv" controls autoplay></video>
 
   <script>
     const video = document.getElementById('liveTv');
@@ -53,7 +75,7 @@
     function playChannel(videoSrc) {
       if (Hls.isSupported()) {
         if (hls) {
-          hls.destroy(); // পূর্বের stream বন্ধ করো
+          hls.destroy();
         }
         hls = new Hls();
         hls.loadSource(videoSrc);
@@ -71,8 +93,8 @@
       }
     }
 
-    // Default channel
-    playChannel("https://dzkyvlfyge.erbvr.com/PeaceTvBangla/index.m3u8");
+    // Optional: Load a default channel
+    // playChannel('https://dzkyvlfyge.erbvr.com/PeaceTvBangla/index.m3u8');
   </script>
 </body>
 </html>
